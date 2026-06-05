@@ -24,7 +24,7 @@ public class OutboxPoller {
         this.outboxRepository = outboxRepository;
         this.streamBridge = streamBridge;
     }
-
+//ÖDEV : Burayı CDC ile(debezium) ile değiştir
     @Scheduled(fixedDelay = 20000)
     @Transactional
     public void publishPendingEvents() {
