@@ -52,8 +52,42 @@ services:
     networks:
       - kafka-net
  
+  product-db:
+    image: postgres:17
+    container_name: product-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test12345
+      POSTGRES_DB: products
+    ports:
+      - "5433:5432" # sağ taraf daima uygulamanın kendi portu
+    volumes:
+      - product-db-data:/var/lib/postgresql/data
+
+  user-db:
+    image: postgres:17
+    container_name: user-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test12345
+      POSTGRES_DB: users
+    ports:
+      - "5434:5432" # sağ taraf daima uygulamanın kendi portu
+    volumes:
+      - user-db-data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin-gygy5
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+
 volumes:
   kafka-data:
+  product-db-data:
+  user-db-data:
  
 networks:
   kafka-net:
