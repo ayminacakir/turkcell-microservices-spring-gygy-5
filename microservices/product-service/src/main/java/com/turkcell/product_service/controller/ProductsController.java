@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.turkcell.product_service.entity.OutboxEvent;
 import com.turkcell.product_service.entity.OutboxStatus;
+import com.turkcell.product_service.entity.TestClass;
 import com.turkcell.product_service.event.TestEvent;
 import com.turkcell.product_service.repository.OutboxRepository;
 
@@ -23,6 +24,11 @@ public class ProductsController {
     public ProductsController(OutboxRepository outboxRepository, ObjectMapper objectMapper) {
         this.outboxRepository = outboxRepository;
         this.objectMapper = objectMapper;
+    }
+
+    @GetMapping("/test")
+    public TestClass test2() {
+        return new TestClass("Product Service Test Başarılı");
     }
 
     @GetMapping
