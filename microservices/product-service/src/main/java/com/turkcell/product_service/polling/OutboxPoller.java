@@ -14,7 +14,7 @@ import com.turkcell.product_service.repository.OutboxRepository;
 import jakarta.transaction.Transactional;
 
 
-@Component
+//@Component
 public class OutboxPoller {
 
     private final OutboxRepository outboxRepository;

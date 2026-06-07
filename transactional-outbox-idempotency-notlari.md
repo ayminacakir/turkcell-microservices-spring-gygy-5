@@ -1405,3 +1405,5 @@ Daha kısa alternatif:
 ```text
 feat: add outbox pattern and inbox idempotency
 ```
+
+

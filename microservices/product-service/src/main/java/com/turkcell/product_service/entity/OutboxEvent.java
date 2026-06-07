@@ -19,7 +19,7 @@ public class OutboxEvent {
     private String aggregateId; // ProductId , Aggregate -> İlgili nesne
     private String eventType; // TestEvent
     @Column(columnDefinition = "TEXT")
-    private String payload; // JSON
+    private String payload;
     private String errorMessage; // Hata varsa, ne hatası var?
     private int retryCount; // Kaç kere denedim?
 
