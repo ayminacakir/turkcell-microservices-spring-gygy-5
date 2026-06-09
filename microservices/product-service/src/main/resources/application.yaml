@@ -1,22 +1,9 @@
 spring:
     application:
         name: product-service
-    cloud:
-        stream:
-            bindings:
-                testEvent-out-0:
-                    destination: test-topic # hangi başlığa bu eventi göndereyim?
-                    content-type: application/json # hangi tür ile göndereyim?
-            kafka:
-                binder:
-                    brokers: localhost:9092
-    datasource:
-        url: jdbc:postgresql://localhost:5433/products
-        username: postgres
-        password: test12345
-        driver-class-name: org.postgresql.Driver
-    jpa:
-        hibernate:
-            ddl-auto: update
+    profiles:
+        active: dev
+    config:
+    import: "optional:confgiserver:http://localhost:8888"
 server:
     port: 8082
