@@ -116,12 +116,37 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "5050:80"
+  
+  order-db:
+    image: postgres:17
+    container_name: order-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test12345
+      POSTGRES_DB: orders
+    ports:
+      - "5435:5432"
+    volumes:
+      - order-db-data:/var/lib/postgresql/data
+
+  notification-db:
+    image: postgres:17
+    container_name: notification-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test12345
+      POSTGRES_DB: notifications
+    ports:
+      - "5436:5432"
+    volumes:
+      - notification-db-data:/var/lib/postgresql/data
 
 volumes:
   kafka-data:
   product-db-data:
   user-db-data:
- 
+  order-db-data:
+  notification-db-data:
 networks:
   kafka-net:
     driver: bridge

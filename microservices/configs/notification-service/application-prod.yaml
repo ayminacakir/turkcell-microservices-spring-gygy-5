@@ -1,0 +1,6 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://prod.turkcell.com:5436/notifications
+        username: postgres
+        password: turkcellprod
+        driver-class-name: org.postgresql.Driver

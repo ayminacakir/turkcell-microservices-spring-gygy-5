@@ -24,6 +24,7 @@
         <module>gateway-server</module>
         <module>config-server</module>
         <module>order-service</module>
+        <module>notification-service</module>
     </modules>
 
     <properties>
