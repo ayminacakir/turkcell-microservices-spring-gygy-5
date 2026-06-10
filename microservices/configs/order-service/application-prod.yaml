@@ -1,6 +1,6 @@
 spring:
     datasource:
-        url: jdbc:postgresql://prod.turkcell.com:5433/products
+        url: jdbc:postgresql://prod.turkcell.com:5435/orders
         username: postgres
         password: turkcellprod
         driver-class-name: org.postgresql.Driver
