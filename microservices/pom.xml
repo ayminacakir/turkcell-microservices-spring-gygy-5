@@ -23,6 +23,7 @@
         <module>eureka-server</module>
         <module>gateway-server</module>
         <module>config-server</module>
+        <module>order-service</module>
     </modules>
 
     <properties>

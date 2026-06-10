@@ -365,10 +365,6 @@ server:
 
 Derste not alınırken `search-pats` gibi yazılmış olabilir. Doğru property adı şudur:
 
-```yaml
-search-paths
-```
-
 Yanlış:
 
 ```yaml
@@ -1108,9 +1104,6 @@ Failed to bind properties under 'spring.config'
 ConverterNotFoundException: No converter found capable of converting from type [java.lang.String]
 ```
 
-Sebep:
-
-`spring.config` direkt string olarak yazılmıştır.
 
 Yanlış:
 
