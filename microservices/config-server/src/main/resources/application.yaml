@@ -9,7 +9,9 @@ spring:
                     default-label: main
                     search-paths: microservices/configs,microservices/configs/{application}
                     clone-on-start: true
-                    force-pull: true
+                    force-pull: false
+                    refresh-rate: 60
+                    timeout: 10
 
 server:
     port: 8888
