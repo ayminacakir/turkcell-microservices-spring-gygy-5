@@ -140,7 +140,20 @@ services:
       - "5436:5432"
     volumes:
       - notification-db-data:/var/lib/postgresql/data
-
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.1
+    container_name: keycloak
+    restart: unless-stopped
+    command: start-dev --import-realm
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_HOSTNAME_STRICT: "false"
+      KC_HTTP_ENABLED: "true"
+    ports:
+      - "8087:8080"
+    networks:
+      - kafka-net
 volumes:
   kafka-data:
   product-db-data:
