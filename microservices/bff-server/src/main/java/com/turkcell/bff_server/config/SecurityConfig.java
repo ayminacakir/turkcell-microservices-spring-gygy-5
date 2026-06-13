@@ -46,10 +46,17 @@ public class SecurityConfig {
     }
 
     // Logout sonrası Keycloak oturumunu da sonlandırır (RP-Initiated Logout).
+    // SPA fetch ile POST /logout çağırdığında 302 yerine 200 + Location header
+    // döner; tarayıcının fetch'i Keycloak'a redirect takip edip CORS'a takılmasın
+    // diye yönlendirmeyi frontend window.location ile kendisi yapar.
     private OidcClientInitiatedLogoutSuccessHandler oidcLogoutSuccessHandler(
             ClientRegistrationRepository clientRegistrationRepository) {
         var handler = new OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository);
         handler.setPostLogoutRedirectUri("{baseUrl}");
+        handler.setRedirectStrategy((request, response, url) -> {
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.setHeader("Location", url);
+        });
         return handler;
     }
 
