@@ -1,17 +1,17 @@
+server:
+    port: 8888
+
 spring:
     application:
         name: config-server
+
+    profiles:
+        active: native
+
     cloud:
         config:
             server:
-                git:
-                    uri: https://github.com/ayminacakir/turkcell-microservices-spring-gygy-5.git
-                    default-label: main
-                    search-paths: microservices/configs,microservices/configs/{application}
-                    clone-on-start: true
-                    force-pull: false
-                    refresh-rate: 60
-                    timeout: 10
-
-server:
-    port: 8888
+                native:
+                    search-locations:
+                        - file:../configs
+                        - file:../configs/{application}

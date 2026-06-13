@@ -1,25 +1,29 @@
+server:
+    port: 8085
+
 spring:
     security:
         oauth2:
             resourceserver:
                 jwt:
                     issuer-uri: http://localhost:8087/realms/microservices-gygy5
-        cloud:
-            stream:
-                bindings:
-                    testEvent-out-0:
-                        destination: test-topic
-                        content-type: application/json
-                kafka:
-                    binder:
-                        brokers: localhost:9092
 
-        datasource:
-            url: jdbc:postgresql://localhost:5436/notifications
-            username: postgres
-            password: test12345
-            driver-class-name: org.postgresql.Driver
+    cloud:
+        stream:
+            bindings:
+                testEvent-out-0:
+                    destination: test-topic
+                    content-type: application/json
+            kafka:
+                binder:
+                    brokers: localhost:9092
 
-        jpa:
-            hibernate:
-                ddl-auto: update
+    datasource:
+        url: jdbc:postgresql://localhost:5436/notifications
+        username: postgres
+        password: test12345
+        driver-class-name: org.postgresql.Driver
+
+    jpa:
+        hibernate:
+            ddl-auto: update
