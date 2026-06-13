@@ -144,12 +144,13 @@ services:
     image: quay.io/keycloak/keycloak:26.1
     container_name: keycloak
     restart: unless-stopped
-    command: start-dev --import-realm
+    command:
+      - start-dev
+      - --http-enabled=true
+      - --hostname-strict=false
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
-      KC_HOSTNAME_STRICT: "false"
-      KC_HTTP_ENABLED: "true"
     ports:
       - "8087:8080"
     networks:
