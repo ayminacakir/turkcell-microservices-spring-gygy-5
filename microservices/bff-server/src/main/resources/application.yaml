@@ -1,0 +1,44 @@
+spring:
+    application:
+        name: bff-server
+    profiles:
+        active: dev
+
+    config:
+        import: optional:configserver:http://localhost:8888
+
+    security:
+        oauth2:
+            client:
+                registration:
+                    keycloak:
+                        client-id: bff-client
+                        client-secret: PAFoXr5KiwXNnqetjJwzr4MeIMNvbohc
+                        authorization-grant-type: authorization_code
+                        scope: openid, profile, email
+                provider:
+                    keycloak:
+                        issuer-uri: http://localhost:8087/realms/microservices-gygy5
+    cloud:
+        gateway:
+            server:
+                webmvc:
+                    routes:
+                        - id: gateway-server
+                          uri: lb://gateway-server
+                          predicates:
+                              - Path=/api/**
+                          filters:
+                              # Session'da saklanan access token'ı Authorization: Bearer
+                              # header'ı olarak ekleyip gateway'e iletir.
+                              - TokenRelay
+
+server:
+    port: 9000
+
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka/
+        fetch-registry: true
+        register-with-eureka: true
