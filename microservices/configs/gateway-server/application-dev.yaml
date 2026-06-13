@@ -1,17 +1,22 @@
 spring:
-    cloud:
-        gateway:
-            server:
-                webmvc:
-                    routes:
-                        - id: user-service
-                          uri: lb://user-service
-                          predicates:
-                              - Path=/api/users/**
-                        - id: product-service
-                          uri: lb://product-service
-                          predicates:
-                              - Path=/api/v1/products/**
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-uri: http://localhost:8087/realms/microservices-gygy5
+        cloud:
+            gateway:
+                server:
+                    webmvc:
+                        routes:
+                            - id: user-service
+                              uri: lb://user-service
+                              predicates:
+                                  - Path=/api/users/**
+                            - id: product-service
+                              uri: lb://product-service
+                              predicates:
+                                  - Path=/api/v1/products/**
 eureka:
     client:
         service-url:
