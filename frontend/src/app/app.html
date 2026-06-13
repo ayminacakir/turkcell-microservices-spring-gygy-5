@@ -1,0 +1,28 @@
+<main class="container">
+  <header>
+    <h1>Products</h1>
+    @if (authenticated()) {
+      <button (click)="logout()">Logout</button>
+    } @else {
+      <button (click)="login()">Login</button>
+    }
+  </header>
+
+  @if (loading()) {
+    <p>Yükleniyor…</p>
+  } @else if (!authenticated()) {
+    <p>Oturum açık değil. Ürünleri görmek için giriş yapın.</p>
+  } @else if (error()) {
+    <p class="error">{{ error() }}</p>
+  } @else if (products().length === 0) {
+    <p>Ürün bulunamadı.</p>
+  } @else {
+    <ul class="products">
+      @for (product of products(); track $index) {
+        <li><pre>{{ stringify(product) }}</pre></li>
+      }
+    </ul>
+  }
+
+  <button (click)="loadProducts()">Yenile</button>
+</main>
